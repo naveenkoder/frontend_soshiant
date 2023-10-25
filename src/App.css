@@ -1,0 +1,16 @@
+.highcharts-data-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.highcharts-data-table table {
+    width: 100%;
+}
+
+.highcharts-data-table :where(td, tr, th, ) {
+  border-collapse: collapse;
+  border: 2px solid gray;
+  border-radius: 3px;
+  padding: 5px;
+  text-align: center;
+}

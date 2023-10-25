@@ -1,0 +1,4 @@
+{
+  "routes": "/routes.php",
+  "routesAccess": "/route_access.php"
+}

@@ -1,0 +1,20 @@
+.toggle-button {
+  margin: 15px 0;
+  width: 100%;
+  display: flex!important;
+  justify-content: space-between!important;
+  align-items: center;
+  color: #007aff !important;
+  background-color: white !important;
+  text-align: left !important;
+}
+
+img {
+  width: 100%;
+}
+
+
+.content-wrapper *, .note-wrapper * {
+  text-align: justify;
+  font-size: 1.1em;
+}

@@ -1,0 +1,17 @@
+.na-data {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+.na-data img {
+  width: 20%;
+}
+
+.na-data span {
+  text-align: center;
+  margin: 10px;
+}

@@ -1,0 +1,67 @@
+.chart-wrapper {
+  padding: 0 !important;
+  border-radius: 10px;
+  border: "solid";
+}
+
+.guage-wrapper svg {
+  width: 90%;
+}
+
+.highcharts-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 10px solid white;
+}
+
+.header-route {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.routes-info {
+  width: 100%;
+  /* display: flex; */
+  /* justify-content: space-between;
+  align-items: center; */
+}
+
+.text {
+  margin: 0 10px;
+}
+
+.breadcrumb {
+  background-color: #ebf0ff !important;
+  position: sticky;
+  z-index: 2;
+  top: 64px;
+  border-radius: 10px;
+}
+
+.chart-padding {
+  box-sizing: content-box;
+  margin: 5px;
+  /* padding: 5px; */
+}
+
+.chart-container {
+  padding: 0px !important;
+  padding-top: 10px !important;
+}
+
+.highcharts-credits {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header-route {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+  }
+}

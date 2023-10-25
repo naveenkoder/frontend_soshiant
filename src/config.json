@@ -1,0 +1,5 @@
+{
+  "baseURL2": "https://soshian-admin.rapidekops.us/api/v1",
+  "baseURL": "https://soshian-admin.rapidekops.us/api/v1",
+  "expireTime": 43200000
+}

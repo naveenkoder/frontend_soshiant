@@ -1,0 +1,97 @@
+img.logo-image {
+  width: 100%;
+  display: inline;
+  padding: 0 10%;
+  margin-bottom: 30px;
+}
+img.logo {
+  text-align: center;
+}
+
+.center {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.tree-wrapper {
+  margin: 20px 10px;
+  justify-self: flex-start;
+  align-self: flex-start;
+}
+.search-input-wrapper {
+  width: 80%;
+}
+
+.guide {
+  cursor: pointer;
+  background-color: #007aff;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  width: 95%;
+  margin: 10px;
+}
+
+.menu {
+  min-width: 100%;
+  height: calc(100% - 32px);
+  overflow-x: scroll;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.ant-tree {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.ant-tree-node-content-wrapper {
+  display: inline-block;
+  white-space: nowrap;
+  margin-right: 8px; /* Optional: Add some spacing between items */
+}
+
+.selected {
+  background-color: #002fff !important;
+  border: solid #002fff;
+  border-radius: 5px;
+  color: white;
+}
+
+.back-button {
+  width: 10px;
+  height: 10px;
+  display: flex;
+  cursor: pointer !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  border: 1px solid black;
+  border-radius: 50%;
+  margin: 10px;
+  padding: 5px;
+}
+
+.highlighted {
+  background-color: #85d8ff;
+  padding: 0px;
+  font-weight: bold;
+  font-size: 0.8em;
+  border-radius: 5px;
+  border: solid #85d8ff;
+  color: white;
+}
+
+.sider-controller {
+  visibility: collapse;
+}
+
+@media (max-width: 768px) {
+  .sider-controller {
+    visibility: visible;
+  }
+}

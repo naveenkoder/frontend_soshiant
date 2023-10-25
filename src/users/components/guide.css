@@ -1,0 +1,39 @@
+.note-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #007aff;
+  color: white;
+  padding: 30px;
+}
+
+.footer-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer {
+  margin-top: 20px!important;
+  width: 100%!important;
+}
+
+.bg-blue {
+  padding: 10px;
+  background-color: #243db5;
+  color: white;
+}
+
+.description-header {
+  padding-right: 10px;
+  font-size: 1.5em;
+}
+
+.title {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+a.link {
+  color: orange;
+}
