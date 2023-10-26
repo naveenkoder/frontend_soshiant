@@ -12,6 +12,11 @@ export const findParentName = (routes, id) => {
   return parentName;
 };
 
+export const findUniqueId = (routes, id) => {
+  const parent = routes.find((i) => String(i.id) === String(id))?.parent;
+  const uniqueId = routes.find((i) => String(i.id) === String(parent))?.unique_id;
+  return uniqueId;
+};
 
 function findChildren(routes, id) {
   const descendants = [];

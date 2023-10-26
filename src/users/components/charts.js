@@ -13,7 +13,7 @@ import {
   Alert,
   Button,
 } from "reactstrap";
-import { getRoutesData } from "../../data/data.facade";
+import { getRoutesData, saveClientLogs} from "../../data/data.facade";
 import "./charts.css";
 import AccuracyChartDirector from "./services/director/accuracy.chart.director";
 import ChangeChartDirector from "./services/director/change.chart.director";
@@ -27,7 +27,7 @@ import { findChildren } from "./services/dropdown.service";
 import { SelectedPeriodContext } from "../../contexts/selectedPeriod";
 import Guide from "./guide";
 import { NADataPage } from "./notFound";
-import { findParent, findParentName } from "./services/search.service";
+import { findParent, findParentName, findUniqueId } from "./services/search.service";
 import { noise } from "./services/data.service";
 import { ChartsDataContext } from "../../contexts/chartsData";
 require("highcharts/modules/exporting")(Highcharts);
@@ -103,7 +103,6 @@ const RouteHeader = ({
   siderController = () => {},
 }) => {
   const { value: routes } = useContext(RoutesContext);
-  console.log('------->',routes)
   const { value: selectedFeature } = useContext(SelectedFeatureContext);
   const { value: selectedPeriod, dispatch: dispatchSelectedPeriod } =
     useContext(SelectedPeriodContext);
@@ -114,7 +113,6 @@ const RouteHeader = ({
   const [firstPeriod, setFirstPeriod] = useState("Loading...");
 
   function onChangeAlert() {
-    console.log({ showAll, alerts });
     if (showAll) setAlerts(alerts);
     else setAlerts(alerts.filter((i) => i.color !== "info"));
     setShowAll(!showAll);
@@ -163,7 +161,6 @@ const RouteHeader = ({
     setIsDefault(!isDefaultPage);
     if (isDefaultPage) localStorage.defaultFeature = "guide";
     else localStorage.defaultFeature = str;
-    console.log(localStorage.defaultFeature, isDefaultPage);
   }
   function isFeature() {
     const children = findChildren(routes, selectedFeature);
@@ -174,22 +171,42 @@ const RouteHeader = ({
   function changePeriod(key) {
     dispatchSelectedPeriod(key);
     setAlerts([]);
+  
     // const str = selectedFeature + "-" + selectedPeriod;
     // const isDefaultPage = String(localStorage.defaultFeature) === String(str);
     // setIsDefault(isDefaultPage);
+  }
+ 
+
+  function setClientLogsData() {
+    let loginInfo = JSON.parse(localStorage.login);
+    const data  = {
+      unique_id   : findUniqueId(routes, selectedPeriod),
+      time        : Math.floor(Date.now()/1000),
+      route       : findParentName(routes, selectedPeriod),
+      username    : loginInfo?.username,
+      period      : routes.find( (i) => String(i.id) === String(selectedPeriod))?.name || firstPeriod
+    }
+    saveClientLogs(data)
   }
 
   useEffect(() => {
     const str = selectedFeature + "-" + selectedPeriod;
     const isDefaultPage = String(localStorage.defaultFeature) === String(str);
     setIsDefault(isDefaultPage);
-    console.log("useEffect []");
+    
   }, []);
+
+  useEffect(() => {   
+    setClientLogsData()
+  }, [ selectedPeriod]);
+
+
   useEffect(() => {
     const str = selectedFeature + "-" + selectedPeriod;
     const isDefaultPage = String(localStorage.defaultFeature) === String(str);
     setIsDefault(isDefaultPage);
-    console.log("useEffect []");
+   
   }, [selectedFeature, selectedPeriod]);
 
   return (
@@ -278,6 +295,7 @@ const AccuracyChart = ({ showHome, tableValue, accuracyChart, size }) => {
 function getValues(chartsData, chartName) {
   const chartData = chartsData.find((item) => item.chartName === chartName);
   const info = chartData?.value;
+  
   return {
     title: info?.title,
     content: info?.description,
@@ -298,11 +316,11 @@ const Charts = ({ siderController }) => {
   const { value: selectedPeriod } = useContext(SelectedPeriodContext);
   const { value: selectedFeature } = useContext(SelectedFeatureContext);
   const { value: routes } = useContext(RoutesContext);
-  console.log('routes',routes)
   useEffect(() => {
     setDataStatus(DataStates.Unselect);
     setAlerts([]);
   }, [selectedFeature]);
+
   useEffect(() => {
     setPercentageChanges(false);
     setHistoryChart(false);
@@ -313,7 +331,6 @@ const Charts = ({ siderController }) => {
     getRoutesData(selectedPeriod)
       .then((res) => {
         const data = res.data;
-        console.log('data --->',data)
         try {
           if (data.routeData !== null) {
             let parentAlerts = routes.find(
@@ -420,6 +437,7 @@ const Charts = ({ siderController }) => {
         if (!axios.isCancel(err)) console.error(err);
       });
   }, [selectedPeriod]);
+
   return String(selectedFeature) === "guide" ? (
     <Guide />
   ) : (

@@ -9,7 +9,7 @@ export const APIManager = {
       loginInfo = JSON.parse(localStorage.login);
       token = `${loginInfo.username}:${loginInfo.password}`;
     } catch (error) {}
-    
+
     const api = axios.create({
       baseURL: endpoints.baseURL,
       timeout: 5000,
